@@ -69,7 +69,7 @@ export default function Catalog() {
         if (Math.random() < 0.6 && picked.stock > 0) {
           // immutably update products
           const next = prev.map((p, i) =>
-            i === idx ? { ...p, stock: Math.max(0, p.stock - 1) } : p
+            i === idx ? { p, stock: Math.max(0, p.stock - 1) } : p
           );
           return next;
         }
@@ -88,7 +88,7 @@ export default function Catalog() {
     );
 
     setCart((prev) => {
-      const next = { ...prev };
+      const next = { prev };
       next[productId] = (next[productId] || 0) + 1;
       return next;
     });
@@ -96,7 +96,7 @@ export default function Catalog() {
 
   const decrementFromCart = useCallback((productId) => {
     setCart((prev) => {
-      const next = { ...prev };
+      const next = { prev };
       if (!next[productId]) return prev;
       next[productId] -= 1;
       if (next[productId] <= 0) delete next[productId];
@@ -131,7 +131,7 @@ export default function Catalog() {
       <aside className="lg:col-span-1 bg-white p-4 rounded-md shadow">
         <h2 className="font-semibold mb-3">Filters</h2>
         <CategoryFilter
-          categories={['All', ...categories]}
+          categories={['All', categories]}
           value={selectedCategory}
           onChange={setSelectedCategory}
         />
