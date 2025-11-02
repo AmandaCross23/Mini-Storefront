@@ -10,5 +10,5 @@ This project covers:
 - Effects & Cleanup 
 - Lifting State 
 - Client vs Server Components 
-- API Routes T
+- API Routes
 - Tailwind UI styling
